@@ -444,7 +444,7 @@ MonoBehaviour:
   _controller: {fileID: 879319062}
   _idleAnimator: {fileID: 4580691597286226170}
   _runAnimator: {fileID: 3134132142829601285}
-  _attack1Animator: {fileID: 4129523272737027995}
+  _attackAnimator: {fileID: 8628967296556958285}
 --- !u!114 &879319066
 MonoBehaviour:
   m_ObjectHideFlags: 0
