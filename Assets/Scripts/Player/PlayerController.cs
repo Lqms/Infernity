@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
         if (_combat.TryAttack())
         {
             _movement.RotateToPoint(clickInfo.point);
-            _movement.StopMoving();
+      _movement.StopMoving();
         }
     }
 }

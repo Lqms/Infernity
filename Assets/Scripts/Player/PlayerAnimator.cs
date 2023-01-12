@@ -9,7 +9,7 @@ public class PlayerAnimator : MonoBehaviour
     [Header("Animations")]
     [SerializeField] private Animator _idleAnimator;
     [SerializeField] private Animator _runAnimator;
-    [SerializeField] private Animator _attack1Animator;
+    [SerializeField] private Animator _attackAnimator;
 
     private Animator _currentAnimator;
 
@@ -26,10 +26,10 @@ public class PlayerAnimator : MonoBehaviour
 
     private void RunAttack(float attackSpeed)
     {
-        _attack1Animator.SetFloat(AttackSpeed, attackSpeed);
-        _attack1Animator.SetTrigger(StartAttack);
+        _attackAnimator.SetFloat(AttackSpeed, attackSpeed);
+        _attackAnimator.SetTrigger(StartAttack);
 
-        var currentAnimatorStateInfo = _attack1Animator.GetCurrentAnimatorStateInfo(0);
+        var currentAnimatorStateInfo = _attackAnimator.GetCurrentAnimatorStateInfo(0);
         CurrentAnimationTime = currentAnimatorStateInfo.length / currentAnimatorStateInfo.speedMultiplier;
         print(CurrentAnimationTime);      
     }
@@ -39,7 +39,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (_controller.IsAttacking)
         {
-            ChangeCurrentAnimator(_attack1Animator);
+            ChangeCurrentAnimator(_attackAnimator);
             RunAttack(_controller.AttackSpeed);
         }
         else if (_controller.IsMoving)

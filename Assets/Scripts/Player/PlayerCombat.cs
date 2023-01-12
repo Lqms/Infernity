@@ -14,7 +14,7 @@ public class PlayerCombat : MonoBehaviour
         if (AttackingCoroutine != null)
             return false;
 
-        AttackingCoroutine = StartCoroutine(Attacking(2.33f / _attackSpeed)); // 2.33 - время анимации атаки
+        AttackingCoroutine = StartCoroutine(Attacking(1.667f / _attackSpeed)); // 2.33 - 1, 1.667 - 2 и 3
 
         return true;
     }
