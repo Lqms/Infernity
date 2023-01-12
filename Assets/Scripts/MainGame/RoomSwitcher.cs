@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RoomSwitcher : MonoBehaviour
 {
-    [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Room[] _rooms;
 
     private Room _current;
@@ -29,8 +28,6 @@ public class RoomSwitcher : MonoBehaviour
     {
         Switch();
         _current.Init(side);
-
-        _playerMovement.Teleportate(_current.BurnedDoor.transform.position);
     }
 
     private void Switch()

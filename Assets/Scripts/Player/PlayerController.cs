@@ -6,13 +6,13 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerInput _input;
     [SerializeField] private PlayerClickHandler _clickHandler;
-    [SerializeField] private PlayerMovement _movement;
-    [SerializeField] private PlayerInteractsHandler _interactsHandler;
-    [SerializeField] private PlayerCombat _combat;
 
-    public bool IsMoving => _movement.Velocity != Vector3.zero;
-    public bool IsAttacking => _combat.AttackingCoroutine != null;
-    public float AttackSpeed => _combat.AttackSpeed;
+    [Header("States")]
+    [SerializeField] private MovementState _movement;
+    [SerializeField] private CombatState _combat;
+    [SerializeField] private IdleState _idle;
+
+    private State _currentState;
 
     private void OnEnable()
     {
@@ -26,18 +26,32 @@ public class PlayerController : MonoBehaviour
         _input.LeftMouseButtonClicked -= OnLeftMouseButtonClicked;
     }
 
+    private void Start()
+    {
+        _currentState = _idle;
+        _currentState.gameObject.SetActive(true);
+    }
+
+    private void Update()
+    {
+        if (_currentState.ActionIsOvered == true && _currentState != _idle)
+        {
+            ChangeState(_idle);
+        }
+    }
+
+    private void ChangeState(State newState)
+    {
+        _currentState.gameObject.SetActive(false);
+        _currentState = newState;
+        _currentState.gameObject.SetActive(true);
+    }
+
     private void OnRightMouseButtonClicked()
     {
-        if (IsAttacking)
-            return;
-
         RaycastHit clickInfo = _clickHandler.HandleClick();
 
-        if (clickInfo.collider != null && clickInfo.collider.TryGetComponent(out IInteractable interactableObject))
-        {
-            _interactsHandler.SetNewInteractableObject(interactableObject);
-        }
-
+        ChangeState(_movement);
         _movement.MoveToPoint(clickInfo.point);
     }
 
@@ -45,10 +59,7 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit clickInfo = _clickHandler.HandleClick();
 
-        if (_combat.TryAttack())
-        {
-            _movement.RotateToPoint(clickInfo.point);
-      _movement.StopMoving();
-        }
+        ChangeState(_combat);
+        _combat.Attack(clickInfo.point);
     }
 }

@@ -35,23 +35,6 @@ public class PlayerAnimator : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (_controller.IsAttacking)
-        {
-            ChangeCurrentAnimator(_attackAnimator);
-            RunAttack(_controller.AttackSpeed);
-        }
-        else if (_controller.IsMoving)
-        {
-            ChangeCurrentAnimator(_runAnimator);
-        }
-        else
-        {
-            ChangeCurrentAnimator(_idleAnimator);
-        }
-    }
-
     private void ChangeCurrentAnimator(Animator newAnimator)
     {
         if (newAnimator.gameObject.activeSelf == true)
