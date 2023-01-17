@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class State : MonoBehaviour
 {
-    public bool ActionIsOvered { get; protected set; }
+    public bool ActionIsOver { get; protected set; }
 
     private void OnEnable()
     {
         transform.rotation = transform.parent.rotation;
-        ActionIsOvered = false;
+        ActionIsOver = false;
     }
 }

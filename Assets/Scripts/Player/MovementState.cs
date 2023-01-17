@@ -24,6 +24,6 @@ public class MovementState : State
             yield return null;
 
         _movingCoroutine = null;
-        ActionIsOvered = true;
+        ActionIsOver = true;
     }
 }

@@ -20,6 +20,6 @@ public class CombatState : State
         yield return new WaitForSeconds(animationTime);
 
         _attackingCoroutine = null;
-        ActionIsOvered = true;
+        ActionIsOver = true;
     }
 }

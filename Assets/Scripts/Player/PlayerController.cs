@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (_currentState.ActionIsOvered == true && _currentState != _idle)
+        if (_currentState.ActionIsOver == true && _currentState != _idle)
         {
             ChangeState(_idle);
         }
