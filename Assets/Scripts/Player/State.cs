@@ -13,7 +13,7 @@ public class State : MonoBehaviour
 
     public event UnityAction ActionCompleted;
 
-    public virtual void OnEnable()
+    public void OnEnable()
     {
         ActiveCoroutine = null;
         transform.rotation = transform.parent.rotation;
