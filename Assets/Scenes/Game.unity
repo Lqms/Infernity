@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 879319062}
   - component: {fileID: 7222395558672311331}
   - component: {fileID: 7222395558672311332}
+  - component: {fileID: 7222395558672311333}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -373,6 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473cf0f9f9a16fb42a9bfc36a5450230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _combat: {fileID: 7222395558672311333}
   _idleState: {fileID: 4580691597286226171}
   _movementState: {fileID: 3134132142837035464}
   _blockState: {fileID: 6049047380663643169}
@@ -10098,5 +10100,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 06c8dc0120ee4ba4aa0ee9b7a42fe79a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7222395558672311333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879319059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305afba9349d22242b2a8e6a8fa4703b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
