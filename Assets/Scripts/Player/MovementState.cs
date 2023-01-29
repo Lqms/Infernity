@@ -1,29 +1,23 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class MovementState : State
 { 
-    [SerializeField] private NavMeshAgent _agent;
-
-    private Coroutine _movingCoroutine;
-
     public void MoveToPoint(Vector3 point)
     {
-        if (_movingCoroutine != null)
-            StopCoroutine(_movingCoroutine);
+        if (ActiveCoroutine != null)
+            StopCoroutine(ActiveCoroutine);
 
-        _movingCoroutine = StartCoroutine(MovingToPoint(point));
+        ActiveCoroutine = StartCoroutine(MovingToPoint(point));
     }
 
     private IEnumerator MovingToPoint(Vector3 point)
     {
-        _agent.SetDestination(point);
+        Agent.SetDestination(point);
 
-        while (Vector3.Distance(transform.position, point) > _agent.radius)
+        while (Vector3.Distance(transform.position, point) > Agent.radius + 0.1f)
             yield return null;
 
-        _movingCoroutine = null;
-        ActionIsOvered = true;
+        Complete();
     }
 }

@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private PlayerInput _input;
-    [SerializeField] private PlayerClickHandler _clickHandler;
-
-    [Header("States")]
     [SerializeField] private MovementState _movement;
     [SerializeField] private CombatState _combat;
     [SerializeField] private IdleState _idle;
@@ -16,14 +12,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        _input.RightMouseButtonClicked += OnRightMouseButtonClicked;
-        _input.LeftMouseButtonClicked += OnLeftMouseButtonClicked;
+        PlayerInput.RightMouseButtonClicked += OnRightMouseButtonClicked;
+        PlayerInput.LeftMouseButtonClicked += OnLeftMouseButtonClicked;
     }
 
     private void OnDisable()
     {
-        _input.RightMouseButtonClicked -= OnRightMouseButtonClicked;
-        _input.LeftMouseButtonClicked -= OnLeftMouseButtonClicked;
+        PlayerInput.RightMouseButtonClicked -= OnRightMouseButtonClicked;
+        PlayerInput.LeftMouseButtonClicked -= OnLeftMouseButtonClicked;
     }
 
     private void Start()
@@ -32,34 +28,52 @@ public class PlayerController : MonoBehaviour
         _currentState.gameObject.SetActive(true);
     }
 
-    private void Update()
+    private void OnActionCompleted()
     {
-        if (_currentState.ActionIsOvered == true && _currentState != _idle)
-        {
-            ChangeState(_idle);
-        }
+        ChangeState(_idle);
+    }
+
+    private bool TryChangeState(State newState)
+    {
+        if (_currentState.CanBeInterrupted == false)
+            return false;
+
+        ChangeState(newState);
+
+        return true;
     }
 
     private void ChangeState(State newState)
     {
+        if (newState == _currentState)
+            return;
+
+        _currentState.ActionCompleted -= OnActionCompleted;
         _currentState.gameObject.SetActive(false);
+
         _currentState = newState;
+
         _currentState.gameObject.SetActive(true);
+        _currentState.ActionCompleted += OnActionCompleted;
     }
 
     private void OnRightMouseButtonClicked()
     {
-        RaycastHit clickInfo = _clickHandler.HandleClick();
-
-        ChangeState(_movement);
-        _movement.MoveToPoint(clickInfo.point);
+        if (TryChangeState(_movement))
+            _movement.MoveToPoint(HandleClick().point);
     }
 
     private void OnLeftMouseButtonClicked()
     {
-        RaycastHit clickInfo = _clickHandler.HandleClick();
+        if (TryChangeState(_combat))
+            _combat.AttackToPoint(HandleClick().point);
+    }
 
-        ChangeState(_combat);
-        _combat.Attack(clickInfo.point);
+    private RaycastHit HandleClick()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out RaycastHit hitInfo);
+
+        return hitInfo;
     }
 }

@@ -330,9 +330,8 @@ GameObject:
   - component: {fileID: 879319063}
   - component: {fileID: 7222395558672311330}
   - component: {fileID: 7222395558672311329}
-  - component: {fileID: 8846583627524186303}
-  - component: {fileID: 7222395558388400731}
   - component: {fileID: 879319062}
+  - component: {fileID: 7222395558672311331}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -370,8 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473cf0f9f9a16fb42a9bfc36a5450230, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 7222395558388400731}
-  _clickHandler: {fileID: 8846583627524186303}
   _movement: {fileID: 3134132142837035464}
   _combat: {fileID: 4129523272744441978}
   _idle: {fileID: 4580691597286226171}
@@ -384,7 +381,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 879319059}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.65
   m_Speed: 5
   m_Acceleration: 1000
   avoidancePriority: 50
@@ -2055,7 +2052,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c5320a598347e249aebafe92ed93e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agent: {fileID: 879319063}
+  Agent: {fileID: 879319063}
+  _canBeInterrupted: 1
 --- !u!1 &3134132142837035465
 GameObject:
   m_ObjectHideFlags: 0
@@ -3758,6 +3756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47267312c2760924294a2ed5ee168dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Agent: {fileID: 879319063}
+  _canBeInterrupted: 0
 --- !u!4 &4129523272744441979
 Transform:
   m_ObjectHideFlags: 0
@@ -5358,18 +5358,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8af714d0c0784141928f0e6ec0a6464, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7222395558388400731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879319059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63526d61483e5684480fbd34faedbf43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  Agent: {fileID: 879319063}
+  _canBeInterrupted: 1
 --- !u!136 &7222395558672311329
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5400,7 +5390,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8846583627524186303
+--- !u!114 &7222395558672311331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5409,6 +5399,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 879319059}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 028c51feb4da28a4491911156f34534f, type: 3}
+  m_Script: {fileID: 11500000, guid: 63526d61483e5684480fbd34faedbf43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

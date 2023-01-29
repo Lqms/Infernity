@@ -1,14 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.AI;
 
 public class State : MonoBehaviour
 {
-    public bool ActionIsOvered { get; protected set; }
+    [SerializeField] protected NavMeshAgent Agent;
+    [SerializeField] private bool _canBeInterrupted;
 
-    private void OnEnable()
+    protected Coroutine ActiveCoroutine;
+
+    public bool CanBeInterrupted => _canBeInterrupted;
+
+    public event UnityAction ActionCompleted;
+
+    public virtual void OnEnable()
     {
+        ActiveCoroutine = null;
         transform.rotation = transform.parent.rotation;
-        ActionIsOvered = false;
+    }
+
+    protected void Complete()
+    {
+        ActiveCoroutine = null;
+        ActionCompleted?.Invoke();
     }
 }

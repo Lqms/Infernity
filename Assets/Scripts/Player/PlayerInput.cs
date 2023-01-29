@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class PlayerInput : MonoBehaviour
 {
-    public event UnityAction RightMouseButtonClicked;
-    public event UnityAction LeftMouseButtonClicked;
+    public static event UnityAction RightMouseButtonClicked;
+    public static event UnityAction LeftMouseButtonClicked;
 
     private void Update()
     {
