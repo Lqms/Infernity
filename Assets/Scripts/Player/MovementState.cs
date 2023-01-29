@@ -5,6 +5,8 @@ public class MovementState : State
 { 
     public void MoveToPoint(Vector3 point)
     {
+        Agent.speed = Constants.PlayerBaseMoveSpeed + PlayerStats.MovementSpeed * Constants.PlayerMovementSpeedCoeff;
+
         if (ActiveCoroutine != null)
             StopCoroutine(ActiveCoroutine);
 

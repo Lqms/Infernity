@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BlockState : State
 {
-    [SerializeField] private float _blockAnimationTime;
-
     public void Block(KeyCode key)
     {
         if (ActiveCoroutine != null)
