@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private MovementState _movement;
-    [SerializeField] private CombatState _combat;
     [SerializeField] private IdleState _idle;
+    [SerializeField] private MovementState _movement;
+    [SerializeField] private CombatState[] _combat;
 
     private State _currentState;
 
@@ -65,8 +65,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnLeftMouseButtonClicked()
     {
-        if (TryChangeState(_combat))
-            _combat.AttackToPoint(HandleClick().point);
+        CombatState randomAttack = _combat[Random.Range(0, _combat.Length)];
+
+        if (TryChangeState(randomAttack))
+            randomAttack.AttackToPoint(HandleClick().point);
     }
 
     private RaycastHit HandleClick()

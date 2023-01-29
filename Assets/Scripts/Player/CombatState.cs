@@ -5,6 +5,8 @@ using DG.Tweening;
 
 public class CombatState : State
 {
+    [SerializeField] private float _attackAnimationTime;
+
     public void AttackToPoint(Vector3 point)
     {
         if (ActiveCoroutine != null)
@@ -17,7 +19,7 @@ public class CombatState : State
 
     private IEnumerator Attacking()
     {
-        yield return new WaitForSeconds(2.33f / 1); // 1 - скорость атаки, 2.33 - 1, 1.667 - 2 и 3 анимации атаки
+        yield return new WaitForSeconds(_attackAnimationTime / 1); // 1 - скорость атаки, 2.33 - 1, 1.667 - 2 и 3 анимации атаки
         Complete();
     }
 }
