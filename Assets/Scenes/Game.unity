@@ -354,9 +354,9 @@ Transform:
   m_Children:
   - {fileID: 4580691597276632856}
   - {fileID: 3134132142836608487}
+  - {fileID: 3264545401392242046}
   - {fileID: 4129523272744441977}
   - {fileID: 436032937470551812}
-  - {fileID: 3264545401392242046}
   - {fileID: 6049047380663283712}
   m_Father: {fileID: 166244295}
   m_RootOrder: 1
@@ -377,9 +377,9 @@ MonoBehaviour:
   _movementState: {fileID: 3134132142837035464}
   _blockState: {fileID: 6049047380663643169}
   _combatStates:
+  - {fileID: 3264545401399177885}
   - {fileID: 4129523272744441978}
   - {fileID: 436032937479866599}
-  - {fileID: 3264545401399177885}
 --- !u!195 &879319063
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 436032937479866598}
   - component: {fileID: 436032937479866599}
   m_Layer: 0
-  m_Name: CombatState:SecondAttack
+  m_Name: CombatState:StrikeAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1375,7 +1375,7 @@ Transform:
   - {fileID: 436032937470551848}
   - {fileID: 436032937470551890}
   m_Father: {fileID: 879319060}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &436032937470551814
 Transform:
@@ -4500,7 +4500,7 @@ GameObject:
   - component: {fileID: 3264545401399177884}
   - component: {fileID: 3264545401399177885}
   m_Layer: 0
-  m_Name: CombatState:ThirdAttack
+  m_Name: CombatState:SimpleAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5191,7 +5191,7 @@ Transform:
   - {fileID: 3264545401392242002}
   - {fileID: 3264545401392241960}
   m_Father: {fileID: 879319060}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3264545401393044828
 MeshFilter:
@@ -6172,7 +6172,7 @@ GameObject:
   - component: {fileID: 4129523272737027995}
   - component: {fileID: 4129523272744441978}
   m_Layer: 0
-  m_Name: CombatState:FirstAttack
+  m_Name: CombatState:SlashAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6867,7 +6867,7 @@ Transform:
   - {fileID: 4129523272744441941}
   - {fileID: 4129523272744441903}
   m_Father: {fileID: 879319060}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4129523272744441978
 MonoBehaviour:

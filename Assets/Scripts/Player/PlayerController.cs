@@ -11,17 +11,31 @@ public class PlayerController : MonoBehaviour
 
     private State _currentState;
 
+    //
+    private Coroutine _comboAttacksCoroutine;
+    private int _currentAttackIndex = 0;
+    private int _comboAttackTimer = 3;
+
+    private IEnumerator ComboTimeCounting()
+    {
+        yield return new WaitForSeconds(_comboAttackTimer);
+
+        _currentAttackIndex = 0;
+        _comboAttacksCoroutine = null;
+    }
+    //
+
     private void OnEnable()
     {
-        PlayerInput.RightMouseButtonClicked += OnRightMouseButtonClicked;
-        PlayerInput.LeftMouseButtonClicked += OnLeftMouseButtonClicked;
+        PlayerInput.RightMouseButtonClicking += OnRightMouseButtonClicking;
+        PlayerInput.LeftMouseButtonClicking += OnLeftMouseButtonClicking;
         PlayerInput.BlockKeyPressed += OnBlockKeyPressed;
     }
 
     private void OnDisable()
     {
-        PlayerInput.RightMouseButtonClicked -= OnRightMouseButtonClicked;
-        PlayerInput.LeftMouseButtonClicked -= OnLeftMouseButtonClicked;
+        PlayerInput.RightMouseButtonClicking -= OnRightMouseButtonClicking;
+        PlayerInput.LeftMouseButtonClicking -= OnLeftMouseButtonClicking;
         PlayerInput.BlockKeyPressed -= OnBlockKeyPressed;
     }
 
@@ -60,18 +74,40 @@ public class PlayerController : MonoBehaviour
         _currentState.ActionCompleted += OnActionCompleted;
     }
 
-    private void OnRightMouseButtonClicked()
+    private void OnRightMouseButtonClicking()
     {
         if (TryChangeState(_movementState))
             _movementState.MoveToPoint(HandleClick().point);
     }
 
-    private void OnLeftMouseButtonClicked()
+    private void OnLeftMouseButtonClicking()
     {
-        CombatState randomAttack = _combatStates[Random.Range(0, _combatStates.Length)];
+        CombatState attack = _combatStates[_currentAttackIndex];
 
-        if (TryChangeState(randomAttack))
-            randomAttack.AttackToPoint(HandleClick().point);
+        if (TryChangeState(attack))
+        {
+            MakeCombo();
+            attack.AttackToPoint(HandleClick().point);
+        }
+    }
+
+    private void MakeCombo()
+    {
+        if (_comboAttacksCoroutine == null)
+        {
+            _currentAttackIndex = 0;
+        }
+        else
+        {
+            _currentAttackIndex++;
+
+            if (_currentAttackIndex >= _combatStates.Length)
+                _currentAttackIndex = 0;
+
+            StopCoroutine(_comboAttacksCoroutine);
+        }
+
+        _comboAttacksCoroutine = StartCoroutine(ComboTimeCounting());
     }
 
     private void OnBlockKeyPressed(KeyCode key)
