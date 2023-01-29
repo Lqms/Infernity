@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private IdleState _idle;
-    [SerializeField] private MovementState _movement;
-    [SerializeField] private CombatState[] _combat;
+    [SerializeField] private IdleState _idleState;
+    [SerializeField] private MovementState _movementState;
+    [SerializeField] private BlockState _blockState;
+    [SerializeField] private CombatState[] _combatStates;
 
     private State _currentState;
 
@@ -14,23 +15,25 @@ public class PlayerController : MonoBehaviour
     {
         PlayerInput.RightMouseButtonClicked += OnRightMouseButtonClicked;
         PlayerInput.LeftMouseButtonClicked += OnLeftMouseButtonClicked;
+        PlayerInput.BlockKeyPressed += OnBlockKeyPressed;
     }
 
     private void OnDisable()
     {
         PlayerInput.RightMouseButtonClicked -= OnRightMouseButtonClicked;
         PlayerInput.LeftMouseButtonClicked -= OnLeftMouseButtonClicked;
+        PlayerInput.BlockKeyPressed -= OnBlockKeyPressed;
     }
 
     private void Start()
     {
-        _currentState = _idle;
+        _currentState = _idleState;
         _currentState.gameObject.SetActive(true);
     }
 
     private void OnActionCompleted()
     {
-        ChangeState(_idle);
+        ChangeState(_idleState);
     }
 
     private bool TryChangeState(State newState)
@@ -59,16 +62,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnRightMouseButtonClicked()
     {
-        if (TryChangeState(_movement))
-            _movement.MoveToPoint(HandleClick().point);
+        if (TryChangeState(_movementState))
+            _movementState.MoveToPoint(HandleClick().point);
     }
 
     private void OnLeftMouseButtonClicked()
     {
-        CombatState randomAttack = _combat[Random.Range(0, _combat.Length)];
+        CombatState randomAttack = _combatStates[Random.Range(0, _combatStates.Length)];
 
         if (TryChangeState(randomAttack))
             randomAttack.AttackToPoint(HandleClick().point);
+    }
+
+    private void OnBlockKeyPressed(KeyCode key)
+    {
+        if (TryChangeState(_blockState))
+            _blockState.Block(key);
     }
 
     private RaycastHit HandleClick()
