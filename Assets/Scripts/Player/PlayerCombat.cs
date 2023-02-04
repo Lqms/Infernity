@@ -4,25 +4,34 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private float _attackSpeed = 2;
+    private Coroutine _comboAttacksCoroutine;
 
-    public Coroutine AttackingCoroutine { get; private set; }
-    public float AttackSpeed => _attackSpeed;
+    public int CurrentAttackIndex { get; private set; }
 
-    public bool TryAttack()
+    public void MakeCombo(int maxLength)
     {
-        if (AttackingCoroutine != null)
-            return false;
+        if (_comboAttacksCoroutine == null)
+        {
+            CurrentAttackIndex = 0;
+        }
+        else
+        {
+            CurrentAttackIndex++;
 
-        AttackingCoroutine = StartCoroutine(Attacking(2.33f / _attackSpeed)); // 2.33 - время анимации атаки
+            if (CurrentAttackIndex >= maxLength)
+                CurrentAttackIndex = 0;
 
-        return true;
+            StopCoroutine(_comboAttacksCoroutine);
+        }
+
+        _comboAttacksCoroutine = StartCoroutine(ComboTimeCounting());
     }
 
-    private IEnumerator Attacking(float animationTime)
+    private IEnumerator ComboTimeCounting()
     {
-        yield return new WaitForSeconds(animationTime);
-        AttackingCoroutine = null;
-    }
+        yield return new WaitForSeconds(Constants.ComboAttackBaseTimer / (Constants.PlayerComboAttackRateCoeff + PlayerStats.AttackSpeed * Constants.PlayerAttackSpeedCoeff));
 
+        CurrentAttackIndex = 0;
+        _comboAttacksCoroutine = null;
+    }
 }
