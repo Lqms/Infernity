@@ -18,6 +18,7 @@ public class CombatState : State
 
     private IEnumerator Attacking()
     {
+
         yield return new WaitForSeconds(BaseAnimationTime / (Constants.BaseAnimationSpeedMultiplier + PlayerStats.AttackSpeed * Constants.PlayerAttackSpeedCoeff));
         Complete();
     }

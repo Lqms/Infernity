@@ -17,14 +17,14 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        PlayerInput.RightMouseButtonClickøòï += OnRightMouseButtonClicked;
+        PlayerInput.RightMouseButtonClickï¿½ï¿½ï¿½ += OnRightMouseButtonClicked;
         PlayerInput.LeftMouseButtonClicked += OnLeftMouseButtonClicked;
         PlayerInput.BlockKeyPressed += OnBlockKeyPressed;
     }
 
     private void OnDisable()
     {
-        PlayerInput.RightMouseButtonClickøòï -= OnRightMouseButtonClicked;
+        PlayerInput.RightMouseButtonClickï¿½ï¿½ï¿½ -= OnRightMouseButtonClicked;
         PlayerInput.LeftMouseButtonClicked -= OnLeftMouseButtonClicked;
         PlayerInput.BlockKeyPressed -= OnBlockKeyPressed;
     }

@@ -5,6 +5,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Animator))]
 public class State : MonoBehaviour
 {
+
     [SerializeField] protected NavMeshAgent Agent;
     [SerializeField] protected Animator Animator;
     [SerializeField] private bool _canBeInterrupted;
