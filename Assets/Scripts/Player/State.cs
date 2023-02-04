@@ -1,14 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(Animator))]
 public class State : MonoBehaviour
 {
-    public bool ActionIsOver { get; protected set; }
 
-    private void OnEnable()
+    [SerializeField] protected NavMeshAgent Agent;
+    [SerializeField] protected Animator Animator;
+    [SerializeField] private bool _canBeInterrupted;
+
+    protected Coroutine ActiveCoroutine;
+    protected float BaseAnimationTime;
+
+    public bool CanBeInterrupted => _canBeInterrupted;
+
+    public event UnityAction ActionCompleted;
+
+    protected virtual void OnEnable()
     {
+        ActiveCoroutine = null;
         transform.rotation = transform.parent.rotation;
-        ActionIsOver = false;
+        BaseAnimationTime = Animator.GetCurrentAnimatorStateInfo(0).length;
+    }
+
+    protected void Complete()
+    {
+        ActiveCoroutine = null;
+        ActionCompleted?.Invoke();
     }
 }

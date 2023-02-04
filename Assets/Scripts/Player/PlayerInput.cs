@@ -3,15 +3,21 @@ using UnityEngine.Events;
 
 public class PlayerInput : MonoBehaviour
 {
-    public event UnityAction RightMouseButtonClicked;
-    public event UnityAction LeftMouseButtonClicked;
+    [SerializeField] private KeyCode _blockKey = KeyCode.Space;
+
+    public static event UnityAction RightMouseButtonClickøòï;
+    public static event UnityAction LeftMouseButtonClicked;
+    public static event UnityAction<KeyCode> BlockKeyPressed;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
             LeftMouseButtonClicked?.Invoke();
 
-        if (Input.GetMouseButtonDown(1))
-            RightMouseButtonClicked?.Invoke();
+        if (Input.GetMouseButton(1))
+            RightMouseButtonClickøòï?.Invoke();
+
+        if (Input.GetKeyDown(_blockKey))
+            BlockKeyPressed?.Invoke(_blockKey);
     }
 }

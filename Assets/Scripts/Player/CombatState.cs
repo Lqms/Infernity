@@ -5,21 +5,21 @@ using DG.Tweening;
 
 public class CombatState : State
 {
-    private Coroutine _attackingCoroutine;
-
-    public bool CanAttack => _attackingCoroutine == null;
-
-    public void Attack(Vector3 direction)
+    public void AttackToPoint(Vector3 point)
     {
-        transform.parent.DOLookAt(direction, 1 / 2); // 2 - скорость вращения
-        _attackingCoroutine = StartCoroutine(Attacking(2.33f / 1)); // 1 - скорость атаки, 2.33 - 1, 1.667 - 2 и 3
+        if (ActiveCoroutine != null)
+            return;
+
+        Animator.SetFloat(Constants.AnimationSpeedMultiplier, Constants.BaseAnimationSpeedMultiplier + PlayerStats.AttackSpeed * Constants.PlayerAttackSpeedCoeff);
+        Agent.SetDestination(transform.position);
+        transform.parent.DOLookAt(point, Constants.PlayerTurnRateCoeff / (Constants.PlayerBaseMoveSpeed + PlayerStats.MovementSpeed * Constants.PlayerMovementSpeedCoeff));
+        ActiveCoroutine = StartCoroutine(Attacking()); 
     }
 
-    private IEnumerator Attacking(float animationTime)
+    private IEnumerator Attacking()
     {
-        yield return new WaitForSeconds(animationTime);
 
-        _attackingCoroutine = null;
-        ActionIsOver = true;
+        yield return new WaitForSeconds(BaseAnimationTime / (Constants.BaseAnimationSpeedMultiplier + PlayerStats.AttackSpeed * Constants.PlayerAttackSpeedCoeff));
+        Complete();
     }
 }
