@@ -5,7 +5,7 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private KeyCode _blockKey = KeyCode.Space;
 
-    public static event UnityAction RightMouseButtonClickøòï;
+    public static event UnityAction RightMouseButtonClicked;
     public static event UnityAction LeftMouseButtonClicked;
     public static event UnityAction<KeyCode> BlockKeyPressed;
 
@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
             LeftMouseButtonClicked?.Invoke();
 
         if (Input.GetMouseButton(1))
-            RightMouseButtonClickøòï?.Invoke();
+            RightMouseButtonClicked?.Invoke();
 
         if (Input.GetKeyDown(_blockKey))
             BlockKeyPressed?.Invoke(_blockKey);
