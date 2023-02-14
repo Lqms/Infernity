@@ -8,9 +8,8 @@ public class Room : MonoBehaviour
 
     private void OnEnable()
     {
-        print(gameObject.name);
         // почему-то игрок не телепортируется в место портала в комнате
-        _player.position = _enterPortal.position;
+        _player.position = _enterPortal.position; // все работает кроме этой строчки кода.
 
         foreach (var portal in _portals)
             portal.gameObject.SetActive(false);
