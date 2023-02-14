@@ -1,15 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class MovementState : State
-{ 
+{
     public void MoveToPoint(Vector3 point)
     {
-        Agent.speed = Constants.PlayerBaseMoveSpeed + PlayerStats.MovementSpeed * Constants.PlayerMovementSpeedCoeff;
-
         if (ActiveCoroutine != null)
             StopCoroutine(ActiveCoroutine);
 
+        Agent.speed = Constants.PlayerBaseMoveSpeed + PlayerStats.MovementSpeed * Constants.PlayerMovementSpeedCoeff;
         ActiveCoroutine = StartCoroutine(MovingToPoint(point));
     }
 
@@ -17,7 +17,7 @@ public class MovementState : State
     {
         Agent.SetDestination(point);
 
-        while (Vector3.Distance(transform.position, point) > Agent.radius + 0.1f)
+        while (Vector3.Distance(transform.position, point) > Agent.radius * 2.5f)
             yield return null;
 
         Complete();
