@@ -9,6 +9,7 @@ public class Room : MonoBehaviour
     private void OnEnable()
     {
         print(gameObject.name);
+        // почему-то игрок не телепортируется в место портала в комнате
         _player.position = _enterPortal.position;
 
         foreach (var portal in _portals)
