@@ -1,4 +1,5 @@
-using UnityEngine; 
+using UnityEngine;
+using UnityEngine.AI;
 
 public class Room : MonoBehaviour
 {
@@ -8,11 +9,14 @@ public class Room : MonoBehaviour
 
     private void OnEnable()
     {
-        // почему-то игрок не телепортируется в место портала в комнате
-        _player.position = _enterPortal.position; // все работает кроме этой строчки кода.
+        _player.GetComponent<NavMeshAgent>().enabled = false;
+        _player.position = _enterPortal.position; 
+        _player.GetComponent<NavMeshAgent>().enabled = true;
 
         foreach (var portal in _portals)
             portal.gameObject.SetActive(false);
+
+        GeneratePortals();
     }
 
     private void GeneratePortals()

@@ -10,7 +10,6 @@ public class Portal : MonoBehaviour, IInteractable
 
     public void Use()
     {
-        print(gameObject.name);
         Entered?.Invoke();
     }
 }
