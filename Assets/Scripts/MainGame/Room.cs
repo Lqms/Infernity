@@ -12,11 +12,6 @@ public class Room : MonoBehaviour
         _player.GetComponent<NavMeshAgent>().enabled = false;
         _player.position = _enterPortal.position; 
         _player.GetComponent<NavMeshAgent>().enabled = true;
-
-        foreach (var portal in _portals)
-            portal.gameObject.SetActive(false);
-
-        GeneratePortals();
     }
 
     private void GeneratePortals()
