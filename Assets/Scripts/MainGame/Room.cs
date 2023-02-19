@@ -1,43 +1,31 @@
 using UnityEngine;
-using System.Linq;
+using UnityEngine.AI;
 
 public class Room : MonoBehaviour
 {
-    [SerializeField] private Door[] _doors;
+    [SerializeField] private Portal[] _portals;
+    [SerializeField] private Transform _enterPortal;
+    [SerializeField] private Transform _player;
 
-    private bool[] _doorStates = { true, false };
-
-    public Door BurnedDoor { get; private set; }
-
-    public void Init(DoorSides oppositeDoorSide)
+    private void OnEnable()
     {
-        foreach (Door door in _doors)
-            if (oppositeDoorSide == door.Side)
-                BurnedDoor = door;
-
-        BurnedDoor.SwitchState(false);
-        BurnedDoor.BurnVFX.Play();
-
-        Generate();
+        _player.GetComponent<NavMeshAgent>().enabled = false;
+        _player.position = _enterPortal.position; 
+        _player.GetComponent<NavMeshAgent>().enabled = true;
     }
 
-    private void Generate()
+    private void GeneratePortals()
     {
-        var allDoorsExceptBurned = _doors.Where(door => door != BurnedDoor).ToList();
+        int counter = 0;
 
-        foreach (var door in allDoorsExceptBurned)
+        foreach (var portal in _portals)
         {
-            int randomIndex = Random.Range(0, _doorStates.Length);
-            bool state = _doorStates[randomIndex];
-            door.SwitchState(state);
+            int activePortal = Random.Range(0, 2);
+            counter += activePortal;
+            portal.gameObject.SetActive(System.Convert.ToBoolean(activePortal));
         }
 
-        var closedDoors = allDoorsExceptBurned.Where(door => door.Enabled == false).ToList();
-
-        if (closedDoors.Count == allDoorsExceptBurned.Count)
-        {
-            int randomIndex = Random.Range(0, allDoorsExceptBurned.Count);
-            allDoorsExceptBurned[randomIndex].SwitchState(true);
-        }
+        if (counter == 0)
+            _portals[Random.Range(0, _portals.Length)].gameObject.SetActive(true);
     }
 }
