@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
         PlayerInput.RightMouseButtonClicked += OnRightMouseButtonClicked;
         PlayerInput.LeftMouseButtonClicked += OnLeftMouseButtonClicked;
         PlayerInput.BlockKeyPressed += OnBlockKeyPressed;
-        PlayerInput.ShoutKeyPressed += OnShoutKeyPressed;
     }
 
 
@@ -31,7 +30,6 @@ public class PlayerController : MonoBehaviour
         PlayerInput.RightMouseButtonClicked -= OnRightMouseButtonClicked;
         PlayerInput.LeftMouseButtonClicked -= OnLeftMouseButtonClicked;
         PlayerInput.BlockKeyPressed -= OnBlockKeyPressed;
-        PlayerInput.ShoutKeyPressed -= OnShoutKeyPressed;
     }
 
     private void Start()
@@ -90,11 +88,6 @@ public class PlayerController : MonoBehaviour
     {
         if (TryChangeState(_blockState))
             _blockState.Block(key);
-    }
-    private void OnShoutKeyPressed()
-    {
-        if (TryChangeState(_shoutState))
-            _shoutState.Shout();
     }
 
     private RaycastHit HandleClick()
