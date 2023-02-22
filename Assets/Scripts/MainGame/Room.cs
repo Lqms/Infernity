@@ -3,18 +3,23 @@ using UnityEngine.AI;
 
 public class Room : MonoBehaviour
 {
+    [SerializeField] protected Transform Player;
+
+    [Header("Room settings")]
     [SerializeField] private Portal[] _portals;
     [SerializeField] private Transform _enterPortal;
-    [SerializeField] private Transform _player;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-        _player.GetComponent<NavMeshAgent>().enabled = false;
-        _player.position = _enterPortal.position; 
-        _player.GetComponent<NavMeshAgent>().enabled = true;
+        Player.GetComponent<NavMeshAgent>().enabled = false;
+        Player.position = _enterPortal.position;
+        Player.GetComponent<NavMeshAgent>().enabled = true;
+
+        foreach (var portal in _portals)
+            portal.gameObject.SetActive(false);
     }
 
-    private void GeneratePortals()
+    protected void GeneratePortals()
     {
         int counter = 0;
 
