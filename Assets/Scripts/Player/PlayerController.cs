@@ -12,7 +12,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private IdleState _idleState;
     [SerializeField] private MovementState _movementState;
     [SerializeField] private BlockState _blockState;
-    [SerializeField] private ShoutState _shoutState;
     [SerializeField] private CombatState[] _combatStates;
 
     private State _currentState;
@@ -22,7 +21,6 @@ public class PlayerController : MonoBehaviour
         PlayerInput.RightMouseButtonClicked += OnRightMouseButtonClicked;
         PlayerInput.LeftMouseButtonClicked += OnLeftMouseButtonClicked;
         PlayerInput.BlockKeyPressed += OnBlockKeyPressed;
-        PlayerInput.ShoutKeyPressed += OnShoutKeyPressed;
     }
 
 
@@ -31,7 +29,6 @@ public class PlayerController : MonoBehaviour
         PlayerInput.RightMouseButtonClicked -= OnRightMouseButtonClicked;
         PlayerInput.LeftMouseButtonClicked -= OnLeftMouseButtonClicked;
         PlayerInput.BlockKeyPressed -= OnBlockKeyPressed;
-        PlayerInput.ShoutKeyPressed -= OnShoutKeyPressed;
     }
 
     private void Start()
@@ -90,11 +87,6 @@ public class PlayerController : MonoBehaviour
     {
         if (TryChangeState(_blockState))
             _blockState.Block(key);
-    }
-    private void OnShoutKeyPressed()
-    {
-        if (TryChangeState(_shoutState))
-            _shoutState.Shout();
     }
 
     private RaycastHit HandleClick()
