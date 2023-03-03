@@ -5,6 +5,7 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider))]
 public class ImpSlice_Pointer : MonoBehaviour
 {
+    [SerializeField] private ImpSlice_Player _impSlicePlayer;
     [SerializeField] private float _maxSlicingDistance = 1000;
     [SerializeField] private float _maxSliceTimer = 1;
     [SerializeField] private Collider _collider;
@@ -23,9 +24,9 @@ public class ImpSlice_Pointer : MonoBehaviour
         if (_isSlicing)
             MoveToMouse();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !_impSlicePlayer._attackAnimation.isActiveAndEnabled)
             StartSlice();
-        else if (Input.GetMouseButtonUp(0))
+        else if (Input.GetMouseButtonUp(0) && !_impSlicePlayer._attackAnimation.isActiveAndEnabled)
             StopSlice();
     }
 
@@ -62,6 +63,7 @@ public class ImpSlice_Pointer : MonoBehaviour
 
     private IEnumerator Slicing(float timer)
     {
+        transform.position = Input.mousePosition;
         yield return new WaitForSeconds(0.1f);
 
         while (Vector3.Distance(Input.mousePosition, _startSlicingMousePosition) < _maxSlicingDistance && timer > 0)

@@ -8,7 +8,7 @@ public class ImpSlice_Player : MonoBehaviour
     [SerializeField] private ImpSlice_VFXController _vfxController;
 
     [Header("Animations")]
-    [SerializeField] private Animator _attackAnimation;
+    [SerializeField] public Animator _attackAnimation;
 
     private void OnEnable()
     {
@@ -24,12 +24,12 @@ public class ImpSlice_Player : MonoBehaviour
 
     private void OnSliceStarted()
     {
-        // _vfxController.SwitchTrailEnabling(true);
+        _vfxController.SwitchTrailEnabling(true);
     }
 
     private void OnSliceStopped()
     {
-        // _vfxController.SwitchTrailEnabling(false);
+        _vfxController.SwitchTrailEnabling(false);
 
         StartCoroutine(Attacking());
     }
