@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Collider))]
 public class ImpSlice_Pointer : MonoBehaviour
 {
     [SerializeField] private float _maxSlicingDistance = 1000;
     [SerializeField] private float _maxSliceTimer = 1;
-    [SerializeField] private ParticleSystem _trail;
     [SerializeField] private Collider _collider;
 
     private Vector3 _startSlicingMousePosition;
@@ -14,6 +14,9 @@ public class ImpSlice_Pointer : MonoBehaviour
     private bool _isSlicing;
 
     private const float DistanceFromCamera = 10;
+
+    public event UnityAction SliceStarted;
+    public event UnityAction SliceStopped;
 
     private void Update()
     {
@@ -35,7 +38,7 @@ public class ImpSlice_Pointer : MonoBehaviour
 
     private void StopSlice()
     {
-        _trail.enableEmission = false;
+        SliceStopped?.Invoke();
         SwitchSliceState(false);
     }
 
@@ -50,6 +53,8 @@ public class ImpSlice_Pointer : MonoBehaviour
 
     private void StartSlice()
     {
+        SliceStarted?.Invoke();
+
         SwitchSliceState(true);
         _startSlicingMousePosition = Input.mousePosition;
         _coroutine = StartCoroutine(Slicing(_maxSliceTimer));
@@ -58,7 +63,6 @@ public class ImpSlice_Pointer : MonoBehaviour
     private IEnumerator Slicing(float timer)
     {
         yield return new WaitForSeconds(0.1f);
-        _trail.enableEmission = true;
 
         while (Vector3.Distance(Input.mousePosition, _startSlicingMousePosition) < _maxSlicingDistance && timer > 0)
         {
