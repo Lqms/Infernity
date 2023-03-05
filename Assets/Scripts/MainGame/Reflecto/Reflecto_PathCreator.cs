@@ -3,41 +3,70 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Reflecto_PathCreator : MonoBehaviour
-{ 
+{
+    [Header("Path points")]
     [SerializeField] private Transform[] _direct;
     [SerializeField] private Transform[] _left;
     [SerializeField] private Transform[] _right;
     [SerializeField] private Transform[] _opposite;
 
+    [Header("Path colors")]
+    [SerializeField] private Color _directPathColor;
+    [SerializeField] private Color _leftPathColor;
+    [SerializeField] private Color _rightPathColor;
+    [SerializeField] private Color _oppsitePathColor;
+
     private List<Vector3[]> _paths;
+    private Vector3[] _oppositePath, _directPath, _leftPath, _rightPath;
+
+    public Color LastGeneratedPathColor { get; private set; }
 
     private void Start()
     {
-        var directPath = new Vector3[_direct.Length];
+        _directPath = new Vector3[_direct.Length];
 
-        for (int i = 0; i < directPath.Length; i++)
-            directPath[i] = _direct[i].position;
+        for (int i = 0; i < _directPath.Length; i++)
+            _directPath[i] = _direct[i].position;
 
-        var leftPath = new Vector3[_left.Length];
+        _leftPath = new Vector3[_left.Length];
 
-        for (int i = 0; i < leftPath.Length; i++)
-            leftPath[i] = _left[i].position;
+        for (int i = 0; i < _leftPath.Length; i++)
+            _leftPath[i] = _left[i].position;
 
-        var rightPath = new Vector3[_right.Length];
+        _rightPath = new Vector3[_right.Length];
 
-        for (int i = 0; i < rightPath.Length; i++)
-            rightPath[i] = _right[i].position;
+        for (int i = 0; i < _rightPath.Length; i++)
+            _rightPath[i] = _right[i].position;
 
-        var oppositePath = new Vector3[_opposite.Length];
+        _oppositePath = new Vector3[_opposite.Length];
 
-        for (int i = 0; i < oppositePath.Length; i++)
-            oppositePath[i] = _opposite[i].position;
+        for (int i = 0; i < _oppositePath.Length; i++)
+            _oppositePath[i] = _opposite[i].position;
 
-        _paths = new List<Vector3[]>() { directPath, leftPath, rightPath, oppositePath };
+        _paths = new List<Vector3[]>() { _directPath, _leftPath, _rightPath, _oppositePath };
     }
 
     public Vector3[] GetRandomPath()
     {
-        return _paths[Random.Range(0, _paths.Count)];
+        var randomPath = _paths[Random.Range(0, _paths.Count)];
+
+        if (randomPath == _directPath)
+        {
+            LastGeneratedPathColor = _directPathColor;
+        }
+        else if (randomPath == _oppositePath)
+        {
+            LastGeneratedPathColor = _oppsitePathColor;
+        }
+        else if (randomPath == _leftPath)
+        {
+            LastGeneratedPathColor = _leftPathColor;
+        }
+        else if (randomPath == _rightPath)
+        {
+            LastGeneratedPathColor = _rightPathColor;
+        }
+
+        return randomPath;
     }
 }

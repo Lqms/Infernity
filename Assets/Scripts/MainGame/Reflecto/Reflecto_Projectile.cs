@@ -5,11 +5,20 @@ using DG.Tweening;
 
 public class Reflecto_Projectile : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _vfx;
+
     private Tween _tween;
 
-    public void Init(Vector3[] path)
+    public void Init(Vector3[] path, Color color, float speed)
     {
-        _tween = transform.DOPath(path, 3);
+        _vfx.startColor = color;
+
+        float distance = 0;
+
+        for (int i = 0; i < path.Length - 1; i++)
+            distance += Vector3.Distance(path[i], path[i + 1]);
+
+        _tween = transform.DOPath(path, distance / speed);
     }
 
     private void OnTriggerEnter(Collider other)
