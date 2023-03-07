@@ -23,13 +23,10 @@ public class Reflecto_Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Reflecto_SwordCollider sword))
+        if (other.TryGetComponent(out Reflecto_PlayerHealth player))
         {
-            print("sword");
-        }
-        else
-        {
-            print("not sword");
+            player.ApplyDamage(2);
+            print("bam");
         }
 
         _tween.Kill();

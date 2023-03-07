@@ -14,7 +14,7 @@ public class Room : MonoBehaviour
         _player.GetComponent<NavMeshAgent>().enabled = true;
     }
 
-    private void GeneratePortals()
+    public void GeneratePortals()
     {
         int counter = 0;
 
