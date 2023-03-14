@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class Reflecto_PlayerHealth : MonoBehaviour
 {
     private float _health;
 
-    private void OnEnable()
+    public event UnityAction Over;
+
+    public void OnEnable()
     {
         _health = PlayerStats.Health;
     }
@@ -18,8 +20,7 @@ public class Reflecto_PlayerHealth : MonoBehaviour
 
         if (_health <= 0)
         {
-            print("ded");
-            SceneManager.LoadScene(0);
+            Over?.Invoke();   
         }
     }
 }

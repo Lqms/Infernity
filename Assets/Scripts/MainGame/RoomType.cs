@@ -8,6 +8,12 @@ public class RoomType : MonoBehaviour
 
     public void ActivateRandomRoom()
     {
-        _rooms[Random.Range(0, _rooms.Length)].gameObject.SetActive(true);
+        var room = _rooms[Random.Range(0, _rooms.Length)];
+        room.gameObject.SetActive(true);
+
+        if (room.TryGetComponent(out Minigame minigame))
+        {
+            FindObjectOfType<MinigameManager>().MinigameEntered(minigame); // cheat-code
+        }
     }
 }
