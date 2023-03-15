@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,16 +8,36 @@ public class ImpSlice_Enemy : MonoBehaviour
     private Coroutine _coroutine;
 
     public event UnityAction Deactivated;
+    Vector3 _baseSize;
+
+    private void Start()
+    {
+        _baseSize = gameObject.transform.localScale;
+    }
 
     public void Init(Vector3 position)
     {
+        transform.localScale = _baseSize;
         transform.position = position;
-        _coroutine = StartCoroutine(Despawning());
+        gameObject.GetComponent<BoxCollider>().isTrigger = false;
+        _coroutine = StartCoroutine(ObjectIncrease());
     }
 
-    private IEnumerator Despawning()
+    // при ините отключить триггер на коллайдере, а затем запустить корутину, которая через рандом кол-во сек
+    // будет увеличивать размер объекта до х4, а в начале этого увелчения включит триггер на коллайдере
+
+    private IEnumerator ObjectIncrease()
     {
-        yield return new WaitForSeconds(3);
+        float increaseTime = Random.Range(2f, 6f);
+        yield return new WaitForSeconds(increaseTime);
+        gameObject.GetComponent<BoxCollider>().isTrigger = true;
+        _baseSize = gameObject.transform.localScale;
+
+        while (gameObject.transform.localScale != _baseSize * 4)
+        {
+            yield return new WaitForSeconds(0.05f);
+            gameObject.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
+        }
 
         print("Not cutted");
         Deactivated?.Invoke();
