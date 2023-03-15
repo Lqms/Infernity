@@ -13,6 +13,7 @@ public class ImpSlice_Pointer : MonoBehaviour
     private Vector3 _startSlicingMousePosition;
     private Coroutine _coroutine;
     private bool _isSlicing;
+    private bool _canStopSlicing = false;
 
     private const float DistanceFromCamera = 10;
 
@@ -25,9 +26,16 @@ public class ImpSlice_Pointer : MonoBehaviour
             MoveToMouse();
 
         if (Input.GetMouseButtonDown(0) && !_impSlicePlayer._attackAnimation.isActiveAndEnabled)
+        {
+            print("start");
             StartSlice();
-        else if (Input.GetMouseButtonUp(0) && !_impSlicePlayer._attackAnimation.isActiveAndEnabled)
+        }
+            
+        else if (Input.GetMouseButtonUp(0) && !_impSlicePlayer._attackAnimation.isActiveAndEnabled && _canStopSlicing)
+        {
+            print("stop");
             StopSlice();
+        }
     }
 
     private void MoveToMouse()
@@ -40,6 +48,8 @@ public class ImpSlice_Pointer : MonoBehaviour
     private void StopSlice()
     {
         SliceStopped?.Invoke();
+
+        _canStopSlicing = false;
         SwitchSliceState(false);
     }
 
@@ -56,6 +66,7 @@ public class ImpSlice_Pointer : MonoBehaviour
     {
         SliceStarted?.Invoke();
 
+        _canStopSlicing = true;
         SwitchSliceState(true);
         _startSlicingMousePosition = Input.mousePosition;
         _coroutine = StartCoroutine(Slicing(_maxSliceTimer));
