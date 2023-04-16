@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class MinigamePerksList : MonoBehaviour
 {
-    public List<string> Perks { get; private set; } = new List<string>() { "abc", "def", "ghi", "ikj" };
+    [SerializeField] private List<string> _perks = new List<string>() { "abc", "def", "ghi", "ikj" };
+
+    public List<string> Perks => _perks;
 
     public event UnityAction Changed;
 
