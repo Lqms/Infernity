@@ -19,7 +19,7 @@ public class MinigamePerkCard : MonoBehaviour
     [SerializeField] private ContentSizeFitter _container;
     [SerializeField] private MinigamePerkDisplay _perkDisplayPrefab;
 
-    private string _activePerkLogic;
+    private MinigamePerkData _activePerkData;
 
     private void OnEnable()
     {
@@ -79,14 +79,14 @@ public class MinigamePerkCard : MonoBehaviour
         _openPerksListButton.gameObject.SetActive(false);
     }
 
-    private void OnChoosePerkButtonClicked(string info, Transform perkParent)
+    private void OnChoosePerkButtonClicked(MinigamePerkData data, Transform perkParent)
     {
         if (perkParent != transform)
             return;
 
-        _activePerkLogic = info;
-        print(info + "эффект перка добавлен");
-        _perkListLogic.ChangeList(_activePerkLogic, false);
+        _activePerkData = data;
+        print(data.Logic + "эффект перка добавлен");
+        _perkListLogic.ChangeList(_activePerkData, false);
 
 
         _activePerkInfo.gameObject.SetActive(true);
@@ -99,7 +99,7 @@ public class MinigamePerkCard : MonoBehaviour
         _openPerksListButton.gameObject.SetActive(true);
 
         print("эффект перка убран");
-        _perkListLogic.ChangeList(_activePerkLogic, true);
-        _activePerkLogic = "";
+        _perkListLogic.ChangeList(_activePerkData, true);
+        _activePerkData = null;
     }
 }

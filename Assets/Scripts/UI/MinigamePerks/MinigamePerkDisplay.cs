@@ -9,9 +9,9 @@ public class MinigamePerkDisplay : MonoBehaviour
     [SerializeField] private Button _choosePerkButton;
 
     private Transform _parent;
-    private string _perkName; // тут потом данные будут о перке передаваться
+    private MinigamePerkData _data; 
 
-    public static event UnityAction<string, Transform> ChoosePerkButtonClicked;
+    public static event UnityAction<MinigamePerkData, Transform> ChoosePerkButtonClicked;
 
     private void OnEnable()
     {
@@ -25,12 +25,12 @@ public class MinigamePerkDisplay : MonoBehaviour
 
     private void OnChoosePerkButtonClicked()
     {
-        ChoosePerkButtonClicked?.Invoke(_perkName, _parent);
+        ChoosePerkButtonClicked?.Invoke(_data, _parent);
     }
 
-    public void Init(string perkName, Transform cardParent)
+    public void Init(MinigamePerkData data, Transform cardParent)
     {
-        _perkName = perkName;
+        _data = data;
         _parent = cardParent;
     }
 }

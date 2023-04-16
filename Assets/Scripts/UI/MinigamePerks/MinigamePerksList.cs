@@ -5,13 +5,13 @@ using UnityEngine.Events;
 
 public class MinigamePerksList : MonoBehaviour
 {
-    [SerializeField] private List<string> _perks = new List<string>() { "abc", "def", "ghi", "ikj" };
+    [SerializeField] private List<MinigamePerkData> _perks;
 
-    public List<string> Perks => _perks;
+    public List<MinigamePerkData> Perks => _perks;
 
     public event UnityAction Changed;
 
-    public void ChangeList(string perk, bool isAdded)
+    public void ChangeList(MinigamePerkData perk, bool isAdded)
     {
         if (isAdded)
         {
