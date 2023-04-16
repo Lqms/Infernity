@@ -91,6 +91,8 @@ public class MinigamePerkCard : MonoBehaviour
 
         _activePerkInfo.gameObject.SetActive(true);
         _perkList.gameObject.SetActive(false);
+
+        // тут формируем UI
     }
 
     private void OnRemoveActivePerkButtonClicked()

@@ -32,5 +32,7 @@ public class MinigamePerkDisplay : MonoBehaviour
     {
         _data = data;
         _parent = cardParent;
+
+        // тут продолжаем формировать UI (Image, Image, Text)
     }
 }
