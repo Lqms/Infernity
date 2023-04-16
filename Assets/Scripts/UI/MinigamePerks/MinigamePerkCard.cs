@@ -6,28 +6,39 @@ using UnityEngine.UI;
 
 public class MinigamePerkCard : MonoBehaviour
 {
+    [SerializeField] private MinigamePerksList _perkListLogic;
+
+    [Header("UI")]
     [SerializeField] private Image _perkList;
     [SerializeField] private Image _activePerkInfo;
 
     [SerializeField] private Button _closePerksListButton;
     [SerializeField] private Button _openPerksListButton;
+    [SerializeField] private Button _removeActivePerkButton;
 
     [SerializeField] private ContentSizeFitter _container;
     [SerializeField] private MinigamePerkDisplay _perkDisplayPrefab;
+
+    private string _activePerkLogic;
 
     private void OnEnable()
     {
         _openPerksListButton.onClick.AddListener(OnOpenPerksListButtonClicked);
         _closePerksListButton.onClick.AddListener(OnClosePerksListButtonClicked);
+        _removeActivePerkButton.onClick.AddListener(OnRemoveActivePerkButtonClicked);
         MinigamePerkDisplay.ChoosePerkButtonClicked += OnChoosePerkButtonClicked;
+
+        _perkListLogic.Changed += OnPerkListChanged;
     }
 
     private void OnDisable()
     {
         _openPerksListButton.onClick.RemoveListener(OnOpenPerksListButtonClicked);
         _closePerksListButton.onClick.RemoveListener(OnClosePerksListButtonClicked);
+        _removeActivePerkButton.onClick.AddListener(OnRemoveActivePerkButtonClicked);
         MinigamePerkDisplay.ChoosePerkButtonClicked -= OnChoosePerkButtonClicked;
 
+        _perkListLogic.Changed -= OnPerkListChanged;
     }
 
     private void Start()
@@ -35,11 +46,21 @@ public class MinigamePerkCard : MonoBehaviour
         InstantiatePerksList(); // потом будет вызываться по событию, когда у нас меняется список перков
     }
 
+    private void OnPerkListChanged()
+    {
+        InstantiatePerksList();
+    }
+
     private void InstantiatePerksList()
     {
-        List<string> opennedPerksList = new List<string>() { "Test", "Another test", "old test" }; // тут будет список с данными о перках, которые нашел игрок и они придут как параметр сюда
+        var perks = _container.GetComponentsInChildren<MinigamePerkDisplay>();
 
-        foreach (var perk in opennedPerksList)
+        foreach (var perk in perks)
+        {
+            Destroy(perk.gameObject);
+        }
+
+        foreach (var perk in _perkListLogic.Perks)
         {
             var perkObj = Instantiate(_perkDisplayPrefab, _container.transform);
             perkObj.Init(perk, transform);
@@ -63,8 +84,22 @@ public class MinigamePerkCard : MonoBehaviour
         if (perkParent != transform)
             return;
 
-        print(info);
+        _activePerkLogic = info;
+        print(info + "эффект перка добавлен");
+        _perkListLogic.ChangeList(_activePerkLogic, false);
+
+
         _activePerkInfo.gameObject.SetActive(true);
         _perkList.gameObject.SetActive(false);
+    }
+
+    private void OnRemoveActivePerkButtonClicked()
+    {
+        _activePerkInfo.gameObject.SetActive(false);
+        _openPerksListButton.gameObject.SetActive(true);
+
+        print("эффект перка убран");
+        _perkListLogic.ChangeList(_activePerkLogic, true);
+        _activePerkLogic = "";
     }
 }
