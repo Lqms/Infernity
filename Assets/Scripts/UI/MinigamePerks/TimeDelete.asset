@@ -15,5 +15,5 @@ MonoBehaviour:
   _header: Time delete
   _description: DELETE ALL TIME XDDD
   _icon: {fileID: 21300000, guid: 9bb60d9b0987c3747b57516cc172d0c7, type: 3}
-  _rarity: {r: 1, g: 0.36530375, b: 0, a: 0}
+  _rarity: {r: 1, g: 0.36530375, b: 0, a: 1}
   _logic: DELETED TIME

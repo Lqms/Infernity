@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8348192618611506102}
   - component: {fileID: 6705877763672952842}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Header
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 899110327050181094}
   - component: {fileID: 6681699796353495416}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,3 +293,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _choosePerkButton: {fileID: 759878286414132570}
+  _header: {fileID: 6705877763672952842}
+  _icon: {fileID: 6681699796353495416}

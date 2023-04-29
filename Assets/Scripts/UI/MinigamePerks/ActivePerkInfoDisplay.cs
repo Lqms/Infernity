@@ -1,18 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ActivePerkInfoDisplay : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Text _header;
+    [SerializeField] private Text _description;
+    [SerializeField] private Image _icon;
+    [SerializeField] private Image _background;
+    [SerializeField] private Button _removeActivePerkButton;
+    [SerializeField] private MinigamePerksList _perkListLogic;
+
+    [SerializeField] private Image _wrapper;
+
+    private MinigamePerkData _activePerkData;
+
+    public void Init(MinigamePerkData data)
     {
-        
+        _wrapper.gameObject.SetActive(true);
+
+        _icon.sprite = data.Icon;
+        _header.text = data.Header;
+        _description.text = data.Description;
+        _background.color = data.Rarity;
+
+        _activePerkData = data;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        _removeActivePerkButton.onClick.AddListener(OnRemoveActivePerkButtonClicked);
+    }
+
+    private void OnDisable()
+    {
+        _removeActivePerkButton.onClick.AddListener(OnRemoveActivePerkButtonClicked);
+    }
+
+    private void OnRemoveActivePerkButtonClicked()
+    {
+        gameObject.SetActive(false);
+
+        print("эффект перка убран");
+        _perkListLogic.AddPerk(_activePerkData);
+        _activePerkData = null;
     }
 }

@@ -4,14 +4,15 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class MinigamePerkDisplay : MonoBehaviour
+public class MinigamePerksListItemDisplay : MonoBehaviour
 {
     [SerializeField] private Button _choosePerkButton;
+    [SerializeField] private Text _header;
+    [SerializeField] private Image _icon;
 
-    private Transform _parent;
     private MinigamePerkData _data; 
 
-    public static event UnityAction<MinigamePerkData, Transform> ChoosePerkButtonClicked;
+    public event UnityAction<MinigamePerkData> ChoosePerkButtonClicked;
 
     private void OnEnable()
     {
@@ -25,14 +26,14 @@ public class MinigamePerkDisplay : MonoBehaviour
 
     private void OnChoosePerkButtonClicked()
     {
-        ChoosePerkButtonClicked?.Invoke(_data, _parent);
+        ChoosePerkButtonClicked?.Invoke(_data);
     }
 
-    public void Init(MinigamePerkData data, Transform cardParent)
+    public void Init(MinigamePerkData data)
     {
         _data = data;
-        _parent = cardParent;
-
-        // тут продолжаем формировать UI (Image, Image, Text)
+        _icon.sprite = data.Icon;
+        _header.text = data.Header;
+        _choosePerkButton.GetComponent<Image>().color = data.Rarity;
     }
 }

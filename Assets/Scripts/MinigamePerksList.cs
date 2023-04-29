@@ -11,17 +11,15 @@ public class MinigamePerksList : MonoBehaviour
 
     public event UnityAction Changed;
 
-    public void ChangeList(MinigamePerkData perk, bool isAdded)
+    public void AddPerk(MinigamePerkData data)
     {
-        if (isAdded)
-        {
-            Perks.Add(perk);
-        }
-        else
-        {
-            Perks.Remove(perk);
-        }
+        _perks.Add(data);
+        Changed?.Invoke();
+    }
 
+    public void RemovePerk(MinigamePerkData data)
+    {
+        _perks.Remove(data);
         Changed?.Invoke();
     }
 }
