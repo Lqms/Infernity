@@ -14,7 +14,7 @@ public class PerksListDisplay : MonoBehaviour
     [SerializeField] private Image _perkListWrapper;
     [SerializeField] private Button _closePerksListButton;
 
-    [SerializeField]  private List<MinigamePerksListItemDisplay> _minigamePerksListItemsDisplay = new List<MinigamePerksListItemDisplay>();
+    [SerializeField] private List<MinigamePerksListItemDisplay> _minigamePerksListItemsDisplay = new List<MinigamePerksListItemDisplay>();
 
     public event UnityAction<MinigamePerkData> PerkChosen;
 
@@ -22,6 +22,7 @@ public class PerksListDisplay : MonoBehaviour
     {
         _closePerksListButton.onClick.AddListener(OnClosePerksListButtonClicked);
         _perkListLogic.Changed += OnPerkListChanged;
+        InstantiatePerksList();
     }
 
     private void OnDisable()
@@ -29,12 +30,7 @@ public class PerksListDisplay : MonoBehaviour
         _closePerksListButton.onClick.RemoveListener(OnClosePerksListButtonClicked);
         _perkListLogic.Changed -= OnPerkListChanged;
         ClearPerksListItemsDisplay();
-    }
-
-    // переделать реакцией на событие PlayerInput
-    private void Start()
-    {
-        InstantiatePerksList();
+        _perkListWrapper.gameObject.SetActive(false);
     }
 
     private void OnPerkListChanged()
@@ -81,6 +77,6 @@ public class PerksListDisplay : MonoBehaviour
         print(data.Logic + "эффект перка добавлен");
         _perkListLogic.RemovePerk(data);
         PerkChosen?.Invoke(data);
-        gameObject.SetActive(false);
+        _perkListWrapper.gameObject.SetActive(false);
     }
 }

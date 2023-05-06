@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class MinigamePerksList : MonoBehaviour
 {
-    [SerializeField] private List<MinigamePerkData> _perks;
+    private List<MinigamePerkData> _perks;
 
     public List<MinigamePerkData> Perks => _perks;
 

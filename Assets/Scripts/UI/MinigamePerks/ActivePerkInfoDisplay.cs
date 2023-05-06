@@ -41,10 +41,10 @@ public class ActivePerkInfoDisplay : MonoBehaviour
 
     private void OnRemoveActivePerkButtonClicked()
     {
-        gameObject.SetActive(false);
-
         print("эффект перка убран");
         _perkListLogic.AddPerk(_activePerkData);
         _activePerkData = null;
+
+        _wrapper.gameObject.SetActive(false);
     }
 }

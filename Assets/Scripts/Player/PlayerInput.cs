@@ -5,10 +5,12 @@ public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private KeyCode _blockKey = KeyCode.Space;
     [SerializeField] private KeyCode _interactKey = KeyCode.E;
+    [SerializeField] private KeyCode _openMinigamePerksKey = KeyCode.Q;
 
     public static event UnityAction RightMouseButtonClicked;
     public static event UnityAction LeftMouseButtonClicked;
     public static event UnityAction InteractKeyPressed;
+    public static event UnityAction OpenMinigamePerksKeyPressed;
     public static event UnityAction<KeyCode> BlockKeyPressed;
 
     private void Update()
@@ -24,5 +26,8 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(_interactKey))
             InteractKeyPressed?.Invoke();
+
+        if (Input.GetKeyDown(_openMinigamePerksKey))
+            OpenMinigamePerksKeyPressed?.Invoke();
     }
 }
