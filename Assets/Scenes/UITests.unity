@@ -1700,12 +1700,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e076a0397b0bbcb4ca007b44e669d5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _perkListLogic: {fileID: 838407204}
   _header: {fileID: 802183145}
   _description: {fileID: 129153192}
   _icon: {fileID: 1519412426}
   _background: {fileID: 206930753}
   _removeActivePerkButton: {fileID: 1700319175}
-  _perkListLogic: {fileID: 838407204}
   _wrapper: {fileID: 206930753}
 --- !u!1 &576350725
 GameObject:
@@ -2290,12 +2290,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e076a0397b0bbcb4ca007b44e669d5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _perkListLogic: {fileID: 838407204}
   _header: {fileID: 631279542}
   _description: {fileID: 285920286}
   _icon: {fileID: 1273188544}
   _background: {fileID: 1614020273}
   _removeActivePerkButton: {fileID: 869188366}
-  _perkListLogic: {fileID: 838407204}
   _wrapper: {fileID: 1614020273}
 --- !u!1 &678215913
 GameObject:
@@ -2588,12 +2588,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e076a0397b0bbcb4ca007b44e669d5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _perkListLogic: {fileID: 838407204}
   _header: {fileID: 1913122323}
   _description: {fileID: 1763874815}
   _icon: {fileID: 1930594118}
   _background: {fileID: 1470210911}
   _removeActivePerkButton: {fileID: 738271310}
-  _perkListLogic: {fileID: 838407204}
   _wrapper: {fileID: 1470210911}
 --- !u!1 &738271308
 GameObject:
@@ -3084,8 +3084,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _perksData:
-  - {fileID: 11400000, guid: 605bb7c2f4c7dbf47bb47dc990fd6e03, type: 2}
-  - {fileID: 11400000, guid: 6f61524057f2e9e4ab8603c13dce4907, type: 2}
+  - {fileID: 11400000, guid: 7b49322dd979ef645b4982b3ecf0fd07, type: 2}
+  - {fileID: 11400000, guid: 0ce2b304535051f4ba4a437fd9303212, type: 2}
+  - {fileID: 11400000, guid: 789b6808744d073428007f84b50f5b9a, type: 2}
+  - {fileID: 11400000, guid: 7a8b27f6d2fd57d4489f580fd658b143, type: 2}
 --- !u!4 &869309727
 Transform:
   m_ObjectHideFlags: 0
@@ -4881,12 +4883,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e076a0397b0bbcb4ca007b44e669d5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _perkListLogic: {fileID: 838407204}
   _header: {fileID: 331986454}
   _description: {fileID: 1811446040}
   _icon: {fileID: 991554926}
   _background: {fileID: 2023851470}
   _removeActivePerkButton: {fileID: 1985198597}
-  _perkListLogic: {fileID: 838407204}
   _wrapper: {fileID: 2023851470}
 --- !u!1 &1392667372
 GameObject:
@@ -7789,12 +7791,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e076a0397b0bbcb4ca007b44e669d5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _perkListLogic: {fileID: 838407204}
   _header: {fileID: 5360996831744356040}
   _description: {fileID: 5360996830981802621}
   _icon: {fileID: 5360996830993063368}
   _background: {fileID: 5360996830346989210}
   _removeActivePerkButton: {fileID: 5360996829793783915}
-  _perkListLogic: {fileID: 838407204}
   _wrapper: {fileID: 5360996830346989210}
 --- !u!1 &1947918214
 GameObject:

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class MinigamePerksList : MonoBehaviour
 {
-    private List<MinigamePerkData> _perks;
+    private List<MinigamePerkData> _perks = new List<MinigamePerkData>();
 
     public List<MinigamePerkData> Perks => _perks;
 

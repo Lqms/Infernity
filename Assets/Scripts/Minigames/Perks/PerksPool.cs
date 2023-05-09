@@ -21,10 +21,11 @@ public class PerksPool : MonoBehaviour
         else
             requiredRarity = 3;
 
-        var filteredPerks = _perksData.Where(p => p.Rarity == requiredRarity).ToList();
+        var filteredPerks = _perksData.Where(p => (int)p.Rarity == requiredRarity).ToList();
         var newPerk = filteredPerks[Random.Range(0, filteredPerks.Count)];
 
-        _perksData.Remove(newPerk);
+        // _perksData.Remove(newPerk);
+
         return newPerk;
     }
 }

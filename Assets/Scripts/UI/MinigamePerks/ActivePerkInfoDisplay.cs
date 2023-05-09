@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class ActivePerkInfoDisplay : MonoBehaviour
 {
+    [SerializeField] private MinigamePerksList _perkListLogic;
+
+    [Header("UI")]
     [SerializeField] private Text _header;
     [SerializeField] private Text _description;
     [SerializeField] private Image _icon;
     [SerializeField] private Image _background;
     [SerializeField] private Button _removeActivePerkButton;
-    [SerializeField] private MinigamePerksList _perkListLogic;
-
     [SerializeField] private Image _wrapper;
 
     private MinigamePerkData _activePerkData;
@@ -24,7 +25,7 @@ public class ActivePerkInfoDisplay : MonoBehaviour
         _icon.sprite = data.Icon;
         _header.text = data.Header;
         _description.text = data.Description;
-        // _background.color = MinigamePerksListItemDisplay. data.Rarity;
+        _background.color = data.Color;
 
         _activePerkData = data;
     }

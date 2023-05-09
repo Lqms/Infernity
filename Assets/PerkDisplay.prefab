@@ -295,3 +295,4 @@ MonoBehaviour:
   _choosePerkButton: {fileID: 759878286414132570}
   _header: {fileID: 6705877763672952842}
   _icon: {fileID: 6681699796353495416}
+  _background: {fileID: 4652751666673993125}
