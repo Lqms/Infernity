@@ -34,6 +34,37 @@ public class MinigamePerksListItemDisplay : MonoBehaviour
         _data = data;
         _icon.sprite = data.Icon;
         _header.text = data.Header;
-        _choosePerkButton.GetComponent<Image>().color = data.Rarity;
+
+        _choosePerkButton.GetComponent<Image>().color = RarityToColor(data.Rarity);
+    }
+
+    public Color RarityToColor(int rarity)
+    {
+        Color color;
+
+        switch (rarity)
+        {
+            case 0:
+                color = Color.grey;
+                break;
+
+            case 1:
+                color = Color.green;
+                break;
+
+            case 2:
+                color = Color.blue;
+                break;
+
+            case 3:
+                color = Color.magenta;
+                break;
+
+            default:
+                color = Color.cyan;
+                break;
+        }
+
+        return color;
     }
 }

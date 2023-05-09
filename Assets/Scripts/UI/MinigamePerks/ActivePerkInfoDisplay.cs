@@ -24,7 +24,7 @@ public class ActivePerkInfoDisplay : MonoBehaviour
         _icon.sprite = data.Icon;
         _header.text = data.Header;
         _description.text = data.Description;
-        _background.color = data.Rarity;
+        // _background.color = MinigamePerksListItemDisplay. data.Rarity;
 
         _activePerkData = data;
     }

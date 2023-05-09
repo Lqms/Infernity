@@ -1939,6 +1939,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608147169}
   m_CullTransparentMesh: 1
+--- !u!1 &627117881
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 627117883}
+  - component: {fileID: 627117882}
+  m_Layer: 0
+  m_Name: AddPerkTest
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &627117882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627117881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3dd59114fb479a4bbe565d1a568568e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _perksList: {fileID: 838407204}
+  _pool: {fileID: 869309726}
+--- !u!4 &627117883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627117881}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 288.28696, y: 290.58624, z: 3.8118272}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &631279540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2853,7 +2899,7 @@ GameObject:
   - component: {fileID: 838407205}
   - component: {fileID: 838407204}
   m_Layer: 0
-  m_Name: PerksLogic
+  m_Name: MinigamePerksList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2871,9 +2917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7724b2a359f4234b9865f9e668d5466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _perks:
-  - {fileID: 11400000, guid: 605bb7c2f4c7dbf47bb47dc990fd6e03, type: 2}
-  - {fileID: 11400000, guid: 6f61524057f2e9e4ab8603c13dce4907, type: 2}
 --- !u!4 &838407205
 Transform:
   m_ObjectHideFlags: 0
@@ -2881,13 +2924,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838407203}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &869188364
 GameObject:
@@ -3011,6 +3054,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869188364}
   m_CullTransparentMesh: 1
+--- !u!1 &869309725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 869309727}
+  - component: {fileID: 869309726}
+  m_Layer: 0
+  m_Name: PerksPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &869309726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869309725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e982b4e6a1873fb428cb80a43c879039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _perksData:
+  - {fileID: 11400000, guid: 605bb7c2f4c7dbf47bb47dc990fd6e03, type: 2}
+  - {fileID: 11400000, guid: 6f61524057f2e9e4ab8603c13dce4907, type: 2}
+--- !u!4 &869309727
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869309725}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 288.28696, y: 290.58624, z: 3.8118272}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &921928153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 921928155}
+  - component: {fileID: 921928154}
+  m_Layer: 0
+  m_Name: PlayerInput
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &921928154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921928153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63526d61483e5684480fbd34faedbf43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _blockKey: 32
+  _interactKey: 101
+  _openMinigamePerksKey: 112
+--- !u!4 &921928155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921928153}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &925793806
 GameObject:
   m_ObjectHideFlags: 0
@@ -3517,6 +3654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1100702643}
+  - component: {fileID: 1100702644}
   m_Layer: 5
   m_Name: MinigamePerks
   m_TagString: Untagged
@@ -3545,6 +3683,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1100702644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100702642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a8c100eaa10fd4bb7603021f82d365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minigamePerkCards: {fileID: 2093121083}
 --- !u!1 &1104438568
 GameObject:
   m_ObjectHideFlags: 0
